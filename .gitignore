@@ -1,5 +1,6 @@
 *.svg
 *.png
+problems.json
 problems/
 
 .vscode/
