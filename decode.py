@@ -10,7 +10,13 @@ def get_tags(soup):
     tags_div = soup.find('div', {'class': 'col-md-3'})
     tags = [a.text.strip() for a in tags_div.find_all('a', {'class': 'btn btn-xs btn-default'})]
     return tags
-    
+
+def get_description(soup):
+    descriptions = str(soup.find('h1', string='Description').find_parent('div', class_='panel panel-default').find('div', class_='panel-body')).find_all('p')
+    description = ""
+    for des in descriptions:
+        des.text.strip()
+    return description
 
 def decode_html_to_json():
     problems = []
