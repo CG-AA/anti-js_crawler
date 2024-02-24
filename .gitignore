@@ -2,6 +2,6 @@
 *.png
 problems.json
 problems/*
-settings.json
+setting.json
 
 .vscode/
