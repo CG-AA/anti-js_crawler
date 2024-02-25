@@ -4,6 +4,7 @@ from time import sleep
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import requests
 
 def load_settings():
     try:
@@ -25,9 +26,12 @@ def login(driver, settings, serial):
     sleep(1)
 
 def write_problem(driver, problem_id):
-    driver.get(f"https://judge.apcs.camp/problems/{problem_id}")
+    sess = requests.Session()
+    for cookie in driver.get_cookies():
+        sess.cookies.set(cookie['name'], cookie['value'])
+    HTML = sess.get(f"https://judge.apcs.camp/problems/{problem_id}")
     with open(f"./problems/problem{problem_id}.html", "w", encoding='utf-8') as file:
-        file.write(driver.page_source)
+        file.write(HTML.text)
 
 def download_problems(driver, settings):
     os.makedirs("./problems", exist_ok=True)

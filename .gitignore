@@ -1,7 +1,7 @@
 *.svg
 *.png
 problems.json
-problems/*
+problems
 setting.json
 
 .vscode/
